@@ -82,31 +82,6 @@ require("lazy").setup({
 			km("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Project Diagnostics" })
 		end,
 	},
-
-	-- {
-	-- 	"nvim-telescope/telescope.nvim",
-	-- 	dependencies = { "nvim-lua/plenary.nvim" },
-	-- 	config = function()
-	-- 		local telescope = require("telescope")
-	-- 		telescope.setup({
-	-- 			defaults = {
-	-- 				mappings = {
-	-- 					i = {
-	-- 						["<C-u>"] = false,
-	-- 						["<C-d>"] = false,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		})
-	--
-	-- 		local km = vim.keymap.set
-	-- 		km("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Find Files" })
-	-- 		km("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Live Grep" })
-	-- 		km("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "Help Tags" })
-	-- 		km("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Project Diagnostics" })
-	-- 	end,
-	-- },
-
 	{
 		"kdheepak/lazygit.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" },
@@ -228,6 +203,35 @@ require("lazy").setup({
 				float_opts = {
 					border = "curved",
 					winblend = 3,
+				},
+			})
+		end,
+	},
+
+	{
+		"nvim-pack/nvim-spectre",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require('spectre').setup({
+				color_devicons = true,
+				open_cmd = 'vnew',
+				live_update = false,
+				mapping = {
+					['toggle_line'] = {
+						map = "dd",
+						cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+						desc = "toggle item"
+					},
+					['enter_file'] = {
+						map = "<cr>",
+						cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
+						desc = "open file"
+					},
+					['run_replace'] = {
+						map = "<leader>R",
+						cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+						desc = "replace all"
+					},
 				},
 			})
 		end,

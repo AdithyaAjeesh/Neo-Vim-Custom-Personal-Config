@@ -16,3 +16,10 @@ vim.keymap.set('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true
 
 --Floating Terminal View
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Floating Terminal" })
+
+
+--Spectre (Find And Replace)
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+	{ desc = "Search current word" })
+vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search selection" })
+vim.keymap.set('n', '<leader>fr', '<cmd>lua require("spectre").toggle()<CR>', { desc = "Open Spectre" })
