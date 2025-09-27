@@ -278,5 +278,17 @@ require("lazy").setup({
 				},
 			})
 		end,
+	},
+	{
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require('colorizer').setup({
+				'dart',
+				'javascript',
+				'typescript',
+				'css',
+				'html',
+			})
+		end
 	}
 })
