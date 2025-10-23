@@ -179,31 +179,32 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- {
-	-- 	"catppuccin/nvim",
-	-- 	name = "catppuccin",
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("catppuccin").setup({
-	-- 			flavour = "mocha", -- latte, frappe, macchiato, mocha
-	-- 			transparent_background = true,
-	-- 			integrations = {
-	-- 				treesitter = true,
-	-- 				native_lsp = { enabled = true },
-	-- 				-- telescope = true,
-	-- 				cmp = true,
-	-- 				gitsigns = true,
-	-- 				which_key = true,
-	-- 				mason = true,
-	-- 				lsp_trouble = true,
-	-- 				noice = true,
-	-- 				illuminate = true,
-	-- 				nvimtree = true,
-	-- 			},
-	-- 		})
-	-- 		vim.cmd.colorscheme("catppuccin")
-	-- 	end,
-	-- },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
+				transparent_background = true,
+				integrations = {
+					treesitter = true,
+					native_lsp = { enabled = true },
+					-- telescope = true,
+					cmp = true,
+					gitsigns = true,
+					which_key = true,
+					mason = true,
+					lsp_trouble = true,
+					noice = true,
+					illuminate = true,
+					nvimtree = true,
+				},
+			})
+			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+	
 	
 	{
 		"nvim-tree/nvim-web-devicons",

@@ -1,0 +1,1 @@
+/home/adithya/.cache/wal/colors-wal.vim
