@@ -112,7 +112,8 @@ vim.api.nvim_create_autocmd("FileType", {
 						runBuildScripts = true,
 					},
 					-- Check on save with clippy
-					checkOnSave = {
+					checkOnSave = true,
+					check = {
 						command = "clippy",
 						extraArgs = { "--all", "--", "-W", "clippy::all" },
 					},
@@ -211,33 +212,33 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-vim.api.nvim_create_autocmd("FileType", {
-	group = lsp_group,
-	pattern = "lua",
-	callback = function()
-		vim.lsp.start({
-			name = 'lua_ls',
-			cmd = { 'lua-language-server' },
-			root_dir = vim.fs.dirname(vim.fs.find(
-				{ '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', '.git' },
-				{ upward = true })[1]),
-			settings = {
-				Lua = {
-					runtime = {
-						version = 'LuaJIT'
-					},
-					diagnostics = {
-						globals = { 'vim' }
-					},
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
-					},
-					telemetry = {
-						enable = false,
-					},
-				},
-			},
-		})
-	end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	group = lsp_group,
+-- 	pattern = "lua",
+-- 	callback = function()
+-- 		vim.lsp.start({
+-- 			name = 'lua_ls',
+-- 			cmd = { 'lua-language-server' },
+-- 			root_dir = vim.fs.dirname(vim.fs.find(
+-- 				{ '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', '.git' },
+-- 				{ upward = true })[1]),
+-- 			settings = {
+-- 				Lua = {
+-- 					runtime = {
+-- 						version = 'LuaJIT'
+-- 					},
+-- 					diagnostics = {
+-- 						globals = { 'vim' }
+-- 					},
+-- 					workspace = {
+-- 						library = vim.api.nvim_get_runtime_file("", true),
+-- 						checkThirdParty = false,
+-- 					},
+-- 					telemetry = {
+-- 						enable = false,
+-- 					},
+-- 				},
+-- 			},
+-- 		})
+-- 	end,
+-- })

@@ -23,3 +23,6 @@ vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({sele
 	{ desc = "Search current word" })
 vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search selection" })
 vim.keymap.set('n', '<leader>fr', '<cmd>lua require("spectre").toggle()<CR>', { desc = "Open Spectre" })
+
+-- Code Actions
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })

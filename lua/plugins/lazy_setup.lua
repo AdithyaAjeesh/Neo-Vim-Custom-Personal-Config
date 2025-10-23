@@ -94,6 +94,26 @@ require("lazy").setup({
 		end,
 	},
 
+{
+	"crnvl96/lazydocker.nvim",
+	dependencies = { "akinsho/toggleterm.nvim" },
+	keys = {
+		{
+			"<leader>dd",
+			function()
+				local Terminal = require("toggleterm.terminal").Terminal
+				local lazydocker = Terminal:new({
+					cmd = "sudo lazydocker",
+					direction = "float",
+					close_on_exit = true,
+					hidden = true,
+				})
+				lazydocker:toggle()
+			end,
+			desc = "Open LazyDocker",
+		},
+	},
+},
 
 	{
 		"stevearc/conform.nvim",
@@ -159,32 +179,32 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha", -- latte, frappe, macchiato, mocha
-				transparent_background = true,
-				integrations = {
-					treesitter = true,
-					native_lsp = { enabled = true },
-					-- telescope = true,
-					cmp = true,
-					gitsigns = true,
-					which_key = true,
-					mason = true,
-					lsp_trouble = true,
-					noice = true,
-					illuminate = true,
-					nvimtree = true,
-				},
-			})
-			vim.cmd.colorscheme("catppuccin")
-		end,
-	},
-
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("catppuccin").setup({
+	-- 			flavour = "mocha", -- latte, frappe, macchiato, mocha
+	-- 			transparent_background = true,
+	-- 			integrations = {
+	-- 				treesitter = true,
+	-- 				native_lsp = { enabled = true },
+	-- 				-- telescope = true,
+	-- 				cmp = true,
+	-- 				gitsigns = true,
+	-- 				which_key = true,
+	-- 				mason = true,
+	-- 				lsp_trouble = true,
+	-- 				noice = true,
+	-- 				illuminate = true,
+	-- 				nvimtree = true,
+	-- 			},
+	-- 		})
+	-- 		vim.cmd.colorscheme("catppuccin")
+	-- 	end,
+	-- },
+	
 	{
 		"nvim-tree/nvim-web-devicons",
 		lazy = false,
