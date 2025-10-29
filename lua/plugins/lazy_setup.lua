@@ -300,16 +300,44 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		'norcalli/nvim-colorizer.lua',
-		config = function()
-			require('colorizer').setup({
-				'dart',
-				'javascript',
-				'typescript',
-				'css',
-				'html',
-			})
-		end
-	}
+	-- {
+	-- 	'norcalli/nvim-colorizer.lua',
+	-- 	config = function()
+	-- 		require('colorizer').setup({
+	-- 			'dart',
+	-- 			'javascript',
+	-- 			'typescript',
+	-- 			'css',
+	-- 			'html',
+	-- 		})
+	-- 	end
+	-- }
+	 
+{
+  'norcalli/nvim-colorizer.lua',
+  config = function()
+    require('colorizer').setup({
+      'dart',
+      'javascript',
+      'typescript',
+      'css',
+      'html',
+    }, {
+      RGB      = true; -- #RGB hex codes
+      RRGGBB   = true; -- #RRGGBB hex codes
+      names    = true; -- "Name" codes like Blue
+      RRGGBBAA = true; -- #RRGGBBAA
+      rgb_fn   = true; -- CSS rgb() and rgba()
+      hsl_fn   = true; -- CSS hsl() and hsla()
+      css      = true; -- Enable all CSS features
+      css_fn   = true; -- Enable all CSS *functions*
+      mode     = 'background'; -- Show color as background
+      custom_pattern = {
+        [ [[Color%s*%(%s*0x(%x+)%s*%)]] ] = function(hex)
+          return '#' .. string.sub(hex, 3)  -- strip 'FF' alpha
+        end,
+      },
+    })
+  end
+}
 })
