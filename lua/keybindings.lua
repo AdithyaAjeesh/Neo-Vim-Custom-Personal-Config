@@ -26,3 +26,10 @@ vim.keymap.set('n', '<leader>fr', '<cmd>lua require("spectre").toggle()<CR>', { 
 
 -- Code Actions
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
+
+-- Reload config without restarting Neovim
+vim.keymap.set("n", "<leader>R", ":source $MYVIMRC<CR>", { desc = "Reload Neovim config" })
+
+-- Show LSP hover info (like VS Code hover)
+vim.keymap.set("n", "<leader>v", vim.lsp.buf.hover, { desc = "Show hover info" })
