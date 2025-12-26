@@ -63,16 +63,32 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = lsp_group,
 	pattern = "dart",
 	callback = function()
+		local root_dir = vim.fs.dirname(vim.fs.find({ 'pubspec.yaml', '.git' }, { upward = true })[1])
+		if not root_dir then
+			vim.notify("Could not find Dart project root (pubspec.yaml)", vim.log.levels.WARN)
+			return
+		end
 		vim.lsp.start({
 			name = 'dartls',
 			cmd = { 'dart', 'language-server', '--protocol=lsp' },
-			root_dir = vim.fs.dirname(vim.fs.find({ 'pubspec.yaml', '.git' }, { upward = true })[1]),
+			root_dir = root_dir,
+			init_options = {
+				onlyAnalyzeProjectsWithOpenFiles = false,
+				suggestFromUnimportedLibraries = true,
+				closingLabels = true,
+				outline = true,
+				flutterOutline = true,
+			},
 			settings = {
 				dart = {
 					completeFunctionCalls = true,
 					showTodos = true,
+					enableSdkFormatter = true,
+					lineLength = 80,
 				}
-			}
+			},
+			on_attach = function(client, bufnr)
+			end,
 		})
 	end,
 })
@@ -211,6 +227,22 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- ASM LSP autocommand
+vim.api.nvim_create_autocmd("FileType", {
+  group = lsp_group,
+  pattern = { "asm", "s", "S" },
+  callback = function()
+    vim.lsp.start({
+      name = 'asm-lsp',
+      cmd = { 'asm-lsp' },
+      root_dir = vim.fn.getcwd(),
+      init_options = {
+        assembler = "nasm"
+      },
+      filetypes = { "asm", "s", "S" },
+    })
+  end,
+})
 
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = lsp_group,

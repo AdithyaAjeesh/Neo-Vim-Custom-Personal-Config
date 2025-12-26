@@ -4,8 +4,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus"
-vim.opt.number = true         -- Shows absolute number on the current line
-vim.opt.relativenumber = true -- Shows relative numbers on other lines
+vim.opt.number = true         
+vim.opt.relativenumber = true
 
 -- Enable swap, backup, and undo files
 vim.opt.swapfile = true

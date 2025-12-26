@@ -33,3 +33,9 @@ vim.keymap.set("n", "<leader>R", ":source $MYVIMRC<CR>", { desc = "Reload Neovim
 
 -- Show LSP hover info (like VS Code hover)
 vim.keymap.set("n", "<leader>v", vim.lsp.buf.hover, { desc = "Show hover info" })
+
+-- Save All Files
+vim.keymap.set('n', '<leader>wa', function()
+  vim.cmd('wall')
+  print("✓ All files saved")
+end, { desc = 'Write all buffers' })
