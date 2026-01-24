@@ -300,18 +300,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- {
-	-- 	'norcalli/nvim-colorizer.lua',
-	-- 	config = function()
-	-- 		require('colorizer').setup({
-	-- 			'dart',
-	-- 			'javascript',
-	-- 			'typescript',
-	-- 			'css',
-	-- 			'html',
-	-- 		})
-	-- 	end
-	-- }
+
 	 
 {
   'norcalli/nvim-colorizer.lua',
@@ -339,5 +328,31 @@ require("lazy").setup({
       },
     })
   end
+},
+
+{
+  "github/copilot.vim",
+  event = "InsertEnter",
+  config = function()
+    -- Use Ctrl+J to accept suggestions instead of Tab
+    -- (Tab is often used for completion plugins)
+    vim.g.copilot_no_tab_map = true
+    vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+      expr = true,
+      replace_keycodes = false
+    })
+    
+    -- Optional: Next/Previous suggestions
+    vim.keymap.set('i', '<C-]>', '<Plug>(copilot-next)')
+    vim.keymap.set('i', '<C-[>', '<Plug>(copilot-previous)')
+    
+    -- Optional: Dismiss suggestion
+    vim.keymap.set('i', '<C-\\>', '<Plug>(copilot-dismiss)')
+    
+    -- Enable for your languages
+    vim.g.copilot_filetypes = {
+      ["*"] = true,
+    }
+  end,
 }
 })

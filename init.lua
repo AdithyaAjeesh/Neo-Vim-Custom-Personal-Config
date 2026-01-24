@@ -37,6 +37,7 @@ end
 require("lsp")
 require("keybindings")
 require("plugins.lazy_setup")
+require("plugins.copilot")
 
 
 

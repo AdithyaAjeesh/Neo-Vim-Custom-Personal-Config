@@ -7,7 +7,6 @@ vim.diagnostic.config({
 
 
 
-
 -- Create autocommand group
 local lsp_group = vim.api.nvim_create_augroup("LSPConfig", { clear = true })
 
@@ -243,6 +242,38 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+-- TypeScript/JavaScript LSP autocommand
+vim.api.nvim_create_autocmd("FileType", {
+	group = lsp_group,
+	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+	callback = function()
+		vim.lsp.start({
+			name = 'tsserver',
+			cmd = { 'typescript-language-server', '--stdio' },
+			root_dir = vim.fs.dirname(vim.fs.find({ 'package.json', 'tsconfig.json', '.git' }, { upward = true })[1]),
+			init_options = {
+				preferences = {
+					quotePreference = "single",
+					importModuleSpecifierPreference = "non-relative",
+				}
+			},
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					}
+				}
+			},
+		})
+	end,
+})
+
+
+
 
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = lsp_group,
